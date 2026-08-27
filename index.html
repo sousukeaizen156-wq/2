@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>BMW Catalog</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ОСНОВНОЕ ПРИЛОЖЕНИЕ
+         ===================================================== -->
+
+    <div class="app">
+
+        <!-- ================= ШАПКА ================= -->
+
+        <header class="header">
+
+            <button
+                id="backButton"
+                class="back-button hidden"
+                type="button"
+            >
+                ←
+                <span>Назад</span>
+            </button>
+
+            <button
+                id="homeButton"
+                class="logo"
+                type="button"
+            >
+                <span class="logo-bmw">BMW</span>
+                <span class="logo-title">CATALOG</span>
+            </button>
+
+        </header>
+
+
+        <!-- ================= ОСНОВНОЙ ЭКРАН ================= -->
+
+        <main id="appContent">
+
+            <!-- =================================================
+                 ГЛАВНЫЙ ЭКРАН
+                 ================================================= -->
+
+            <section
+                id="homeScreen"
+                class="screen active"
+            >
+
+                <div class="hero">
+
+                    <span class="hero-label">
+                        BMW AUTOMOTIVE DATABASE
+                    </span>
+
+                    <h1>
+                        ЭВОЛЮЦИЯ
+                        <strong>BMW</strong>
+                    </h1>
+
+                    <p>
+                        Полный каталог автомобилей,
+                        поколений, двигателей и характеристик.
+                    </p>
+
+                </div>
+
+
+                <!-- ================= ПОИСК ================= -->
+
+                <div class="search-box">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Найти автомобиль..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="clearSearch"
+                        class="clear-search hidden"
+                        type="button"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <!-- ================= ФИЛЬТРЫ ================= -->
+
+                <div class="filters">
+
+                    <button
+                        class="filter-button active"
+                        data-filter="all"
+                        type="button"
+                    >
+                        Все
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="classic"
+                        type="button"
+                    >
+                        Классика
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="series"
+                        type="button"
+                    >
+                        Серии
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="special"
+                        type="button"
+                    >
+                        M / i / X / Z
+                    </button>
+
+                </div>
+
+
+                <!-- ================= СЕРИИ ================= -->
+
+                <div
+                    id="seriesGrid"
+                    class="series-grid"
+                >
+
+                    <!--
+                        Карточки серий будут создаваться
+                        автоматически через JavaScript.
+                    -->
+
+                </div>
+
+
+                <!-- ================= РЕЗУЛЬТАТЫ ПОИСКА ================= -->
+
+                <div
+                    id="searchResults"
+                    class="search-results hidden"
+                >
+
+                    <div class="section-title">
+                        <span>Результаты поиска</span>
+                        <small id="searchCount"></small>
+                    </div>
+
+                    <div
+                        id="searchResultsGrid"
+                        class="search-results-grid"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ЭКРАН МОДЕЛЕЙ
+                 ================================================= -->
+
+            <section
+                id="modelsScreen"
+                class="screen"
+            >
+
+                <div class="section-header">
+
+                    <span
+                        id="modelsLabel"
+                        class="section-label"
+                    >
+                        BMW
+                    </span>
+
+                    <h2 id="modelsTitle">
+                        Модели
+                    </h2>
+
+                    <p id="modelsSubtitle">
+                        Выберите модель автомобиля
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="modelsGrid"
+                    class="models-grid"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ЭКРАН ПОКОЛЕНИЙ
+                 ================================================= -->
+
+            <section
+                id="generationsScreen"
+                class="screen"
+            >
+
+                <div class="section-header">
+
+                    <span
+                        id="generationsLabel"
+                        class="section-label"
+                    >
+                        BMW
+                    </span>
+
+                    <h2 id="generationsTitle">
+                        Поколения
+                    </h2>
+
+                    <p>
+                        Выберите поколение
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="generationsGrid"
+                    class="generations-grid"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ЭКРАН АВТОМОБИЛЯ
+                 ================================================= -->
+
+            <section
+                id="carScreen"
+                class="screen"
+            >
+
+                <div class="car-detail">
+
+                    <!-- ФОТО -->
+
+                    <div class="car-image-wrapper">
+
+                        <img
+                            id="carImage"
+                            src="./images/placeholder.jpg"
+                            alt="BMW"
+                        >
+
+                        <div
+                            id="carYear"
+                            class="car-year"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <!-- НАЗВАНИЕ -->
+
+                    <div class="car-heading">
+
+                        <span
+                            id="carGeneration"
+                            class="car-generation"
+                        >
+                            —
+                        </span>
+
+                        <h1 id="carTitle">
+                            BMW
+                        </h1>
+
+                        <p id="carBody">
+                            —
+                        </p>
+
+                    </div>
+
+
+                    <!-- ДВИГАТЕЛИ -->
+
+                    <div
+                        id="engineSection"
+                        class="engine-section"
+                    >
+
+                        <div class="section-title">
+                            <span>
+                                Модификация
+                            </span>
+                        </div>
+
+                        <div
+                            id="engineTabs"
+                            class="engine-tabs"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- ХАРАКТЕРИСТИКИ -->
+
+                    <div class="specs-grid">
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                ⚡
+                            </span>
+
+                            <small>
+                                Мощность
+                            </small>
+
+                            <strong id="specHp">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                ◉
+                            </span>
+
+                            <small>
+                                Крутящий момент
+                            </small>
+
+                            <strong id="specTorque">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                0–100
+                            </span>
+
+                            <small>
+                                Разгон
+                            </small>
+
+                            <strong id="specAccel">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                →
+                            </span>
+
+                            <small>
+                                Максимальная скорость
+                            </small>
+
+                            <strong id="specSpeed">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                ◈
+                            </span>
+
+                            <small>
+                                Двигатель
+                            </small>
+
+                            <strong id="specEngine">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                ⚙
+                            </span>
+
+                            <small>
+                                Трансмиссия
+                            </small>
+
+                            <strong id="specTransmission">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                AWD
+                            </span>
+
+                            <small>
+                                Привод
+                            </small>
+
+                            <strong id="specDrive">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="spec-card">
+
+                            <span class="spec-icon">
+                                kg
+                            </span>
+
+                            <small>
+                                Масса
+                            </small>
+
+                            <strong id="specWeight">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ПОДРОБНОСТИ -->
+
+                    <button
+                        id="detailsButton"
+                        class="details-button"
+                        type="button"
+                    >
+                        <span>
+                            Подробнее об автомобиле
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ЭКРАН ПОДРОБНОЙ ИНФОРМАЦИИ
+                 ================================================= -->
+
+            <section
+                id="detailsScreen"
+                class="screen"
+            >
+
+                <div class="details-container">
+
+                    <span
+                        id="detailsGeneration"
+                        class="section-label"
+                    >
+                        —
+                    </span>
+
+                    <h1 id="detailsTitle">
+                        История автомобиля
+                    </h1>
+
+
+                    <div class="info-block">
+
+                        <h3>
+                            📖 Описание
+                        </h3>
+
+                        <p id="detailsDescription">
+                            —
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-block">
+
+                        <h3>
+                            📅 Годы производства
+                        </h3>
+
+                        <p id="detailsYears">
+                            —
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-block">
+
+                        <h3>
+                            🛠 Технические особенности
+                        </h3>
+
+                        <p id="detailsTech">
+                            —
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-block">
+
+                        <h3>
+                            ✨ Особенности версии
+                        </h3>
+
+                        <p id="detailsVersion">
+                            —
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-block">
+
+                        <h3>
+                            💡 Интересные факты
+                        </h3>
+
+                        <p id="detailsFacts">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+   <script src="./data/classic.js"></script>
+<script src="./data/series1.js"></script>
+<script src="./data/series2.js"></script>
+<script src="./data/series3.js"></script>
+<script src="./data/series4.js"></script>
+<script src="./data/series5.js"></script>
+<script src="./data/series6.js"></script>
+<script src="./data/series7.js"></script>
+<script src="./data/series8.js"></script>
+<script src="./data/seriesX.js"></script>
+<script src="./data/seriesZ.js"></script>
+<script src="./data/seriesM.js"></script>
+<script src="./data/seriesI.js"></script>
+
+<script src="./data/specifications.js"></script>
+<script src="./data/filters.js"></script>
+<script src="./script.js"></script>
+<script src="./data/specifications.js"></script>
+<script src="./data/filters.js"></script>
+
+<script src="./script.js"></script>
+
+</body>
+</html>
